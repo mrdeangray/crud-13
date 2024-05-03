@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import TaskProvider from "./context/TaskProvider";
+import CreateTask from "./components/CreateTask";
+import ReadTasks from "./components/ReadTasks";
+import UpdateTask from "./components/UpdateTask";
+import DeleteTask from "./components/DeleteTask";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TaskProvider>
+        <Routes>
+          <Route exact path="/" element={<ReadTasks />} />
+          <Route exact path="/create" element={<CreateTask />} />
+          <Route exact path="/update/:id" element={<UpdateTask />} />
+          <Route exact path="/delete/:id" element={<DeleteTask />} />
+        </Routes>
+      </TaskProvider>
     </div>
   );
 }
